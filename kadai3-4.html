@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
     <head>
-        <meta charset="urf-8">
+        <meta charset="utf-8">
         <title>演習課題3-4：自動販売機</title>
     </head>
     <body>
@@ -23,13 +23,21 @@
                 console.log("商品は以下の" + items.length + "種類です。");
 
                 // 配列の内容を項目毎に出力
-                // ここにコードを書く
+                for (let item of items) {
+                    console.log(item.id + ": " + item.name + " - " + item.price + "円 - 在庫" + item.stock + "個");
+                }
                 console.log(""); // 空行の出力
             }
 
             // 商品購入の関数
             function buyItem(no) {
-                // ここにコードを書く
+                const item = items.find(i => i.id === no);
+                if (item && item.stock > 0) {
+                    item.stock--;
+                    console.log(item.name + "を購入しました。");
+                } else {
+                    console.log(item ? item.name + "は在庫切れです。" : "商品が見つかりません。");
+                }
                 showItemList(); // 商品一覧の表示関数呼び出し
             }
 
